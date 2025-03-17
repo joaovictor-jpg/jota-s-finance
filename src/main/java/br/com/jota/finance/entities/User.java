@@ -26,6 +26,8 @@ public class User implements UserDetails {
     private LocalDateTime creationDate;
     private LocalDateTime updateDate;
     private LocalDateTime deleteDate;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Goal> goals;
 
     public User() {
     }
