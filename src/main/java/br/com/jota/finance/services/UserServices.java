@@ -2,6 +2,7 @@ package br.com.jota.finance.services;
 
 import br.com.jota.finance.DTOs.DadosLogin;
 import br.com.jota.finance.DTOs.UserRegistrationData;
+import br.com.jota.finance.DTOs.goalDTOS.GoalDatails;
 import br.com.jota.finance.entities.User;
 import br.com.jota.finance.repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class UserServices implements UserDetailsService {
@@ -55,5 +57,13 @@ public class UserServices implements UserDetailsService {
         User user = new User(data.name(), data.email(), encodePassword, true, data.role(), LocalDateTime.now());
 
         return userRepository.save(user);
+    }
+
+    public List<GoalDatails> getGoals(Long id) {
+        var goals = userRepository.findGoalsByUserId(id);
+
+        List<GoalDatails> goalDatails = goals.stream().map(GoalDatails::new).toList();
+
+        return goalDatails;
     }
 }

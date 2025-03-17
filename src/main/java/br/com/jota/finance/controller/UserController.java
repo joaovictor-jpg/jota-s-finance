@@ -2,15 +2,16 @@ package br.com.jota.finance.controller;
 
 import br.com.jota.finance.DTOs.DadosLogin;
 import br.com.jota.finance.DTOs.UserRegistrationData;
+import br.com.jota.finance.DTOs.goalDTOS.GoalDatails;
 import br.com.jota.finance.entities.User;
 import br.com.jota.finance.services.UserServices;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -31,5 +32,11 @@ public class UserController {
         User user = userServices.signup(data);
         var uri = uriComponentsBuilder.path("/users/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @GetMapping("/goals")
+    public ResponseEntity<List<GoalDatails>> getGoals(@AuthenticationPrincipal User user) {
+        List<GoalDatails> goalDatails = userServices.getGoals(user.getId());
+        return ResponseEntity.ok().body(goalDatails);
     }
 }
