@@ -35,4 +35,10 @@ public class GoalController {
         return ResponseEntity.ok().body(goalService.updateGoal(idGoal, data, user));
     }
 
+    @DeleteMapping("/{idGoal}")
+    public ResponseEntity<Void> deleteGoal(@PathVariable Long idGoal, @AuthenticationPrincipal User user) {
+        goalService.deleteGoal(idGoal, user);
+        return ResponseEntity.noContent().build();
+    }
+
 }

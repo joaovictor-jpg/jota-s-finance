@@ -40,6 +40,12 @@ public class GoalService {
         return updateDataGoal(goal, data);
     }
 
+    public void deleteGoal(Long id, User user) {
+        Goal goal = goalRepository.findByUserAndIdGoal(user, id).orElseThrow();
+
+        goalRepository.delete(goal);
+    }
+
     private GoalDatails updateDataGoal(Goal goal, GoalUpdateData data) {
         if (data.description() != null) {
             goal.setDescription(data.description());
