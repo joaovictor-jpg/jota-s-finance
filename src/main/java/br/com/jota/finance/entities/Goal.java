@@ -40,16 +40,32 @@ public class Goal {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public BigDecimal getTargetValue() {
         return targetValue;
+    }
+
+    public void setTargetValue(BigDecimal targetValue) {
+        this.targetValue = targetValue;
     }
 
     public LocalDateTime getStartDate() {
         return startDate;
     }
 
+    public void setStartDate(LocalDateTime startDate) {
+        this.startDate = startDate;
+    }
+
     public LocalDateTime getEndDate() {
         return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 
     public User getUser() {
