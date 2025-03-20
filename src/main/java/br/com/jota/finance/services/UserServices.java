@@ -2,7 +2,9 @@ package br.com.jota.finance.services;
 
 import br.com.jota.finance.DTOs.DadosLogin;
 import br.com.jota.finance.DTOs.UserRegistrationData;
+import br.com.jota.finance.DTOs.bankAccountDTOs.BankAccountDetails;
 import br.com.jota.finance.DTOs.goalDTOS.GoalDatails;
+import br.com.jota.finance.entities.BankAccount;
 import br.com.jota.finance.entities.User;
 import br.com.jota.finance.repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -65,5 +67,13 @@ public class UserServices implements UserDetailsService {
         List<GoalDatails> goalDatails = goals.stream().map(GoalDatails::new).toList();
 
         return goalDatails;
+    }
+
+    public List<BankAccountDetails> getBankAccount(Long id) {
+        var bankAccount = userRepository.findBankAccountsByUserId(id);
+
+        List<BankAccountDetails> bankAccountDetails = bankAccount.stream().map(BankAccountDetails::new).toList();
+
+        return bankAccountDetails;
     }
 }

@@ -2,7 +2,9 @@ package br.com.jota.finance.controller;
 
 import br.com.jota.finance.DTOs.DadosLogin;
 import br.com.jota.finance.DTOs.UserRegistrationData;
+import br.com.jota.finance.DTOs.bankAccountDTOs.BankAccountDetails;
 import br.com.jota.finance.DTOs.goalDTOS.GoalDatails;
+import br.com.jota.finance.entities.BankAccount;
 import br.com.jota.finance.entities.User;
 import br.com.jota.finance.services.UserServices;
 import jakarta.validation.Valid;
@@ -38,5 +40,11 @@ public class UserController {
     public ResponseEntity<List<GoalDatails>> getGoals(@AuthenticationPrincipal User user) {
         List<GoalDatails> goalDatails = userServices.getGoals(user.getId());
         return ResponseEntity.ok().body(goalDatails);
+    }
+
+    @GetMapping("/bankAccount")
+    public ResponseEntity<List<BankAccountDetails>> getBankAccount(@AuthenticationPrincipal User user) {
+        List<BankAccountDetails> bankAccountDetails = userServices.getBankAccount(user.getId());
+        return ResponseEntity.ok().body(bankAccountDetails);
     }
 }
