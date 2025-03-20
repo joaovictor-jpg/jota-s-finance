@@ -7,10 +7,7 @@ import br.com.jota.finance.services.BankAccountService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -27,5 +24,11 @@ public class BankAccountController {
         var bankAccount = bankAccountService.createBankAccount(bankAccountData, user);
         var uri = uriComponentsBuilder.path("/bankAccounts/{id}").buildAndExpand(bankAccount.id()).toUri();
         return ResponseEntity.created(uri).body(bankAccount);
+    }
+
+    @DeleteMapping("/{idBankAccount}")
+    public ResponseEntity<Void> deleteBankAccount(@PathVariable Long idBankAccount, @AuthenticationPrincipal User user) {
+        bankAccountService.deleteBankAccount(user, idBankAccount);
+        return ResponseEntity.noContent().build();
     }
 }

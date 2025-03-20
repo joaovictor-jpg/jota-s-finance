@@ -16,8 +16,13 @@ public class BankAccountService {
     }
 
     public BankAccountDetails createBankAccount(BankAccountData data, User user) {
-
         var bankAccount = bankAccountRepository.save(new BankAccount(data.nameAccount(), data.typeAccount(), data.openingBalance(), user));
         return new BankAccountDetails(bankAccount);
+    }
+
+    public void deleteBankAccount(User user, Long id) {
+        var bankAccount = bankAccountRepository.findByUserAndIdBankAccount(user, id).orElseThrow();
+
+        bankAccountRepository.delete(bankAccount);
     }
 }
