@@ -28,6 +28,8 @@ public class User implements UserDetails {
     private LocalDateTime deleteDate;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Goal> goals;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<BankAccount> bankAccounts;
 
     public User() {
     }
