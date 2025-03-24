@@ -28,4 +28,9 @@ public class CategoryService {
         var categoriesDatails = categories.stream().map(CategoryDetails::new).toList();
         return categoriesDatails;
     }
+
+    public void deleteCategory(Long idCatgory, User user) {
+        Category category = categoryRepository.findByUserAndIdCategory(user, idCatgory);
+        categoryRepository.delete(category);
+    }
 }

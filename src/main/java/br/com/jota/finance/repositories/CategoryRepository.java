@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     List<Category> findByUser(User user);
+
+    Category findByUserAndIdCategory(User user, Long idCategory);
 }

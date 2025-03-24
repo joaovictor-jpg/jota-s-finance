@@ -33,4 +33,10 @@ public class CategoryController {
         List<CategoryDetails> categoryDetails = categoryService.listByUser(user);
         return ResponseEntity.ok().body(categoryDetails);
     }
+
+    @DeleteMapping("/{idCatgory}")
+    public ResponseEntity<Void> delete(@PathVariable Long idCatgory, @AuthenticationPrincipal User user) {
+        categoryService.deleteCategory(idCatgory, user);
+        return ResponseEntity.noContent().build();
+    }
 }
