@@ -7,11 +7,10 @@ import br.com.jota.finance.services.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/categorias")
@@ -27,5 +26,11 @@ public class CategoryController {
         var category = categoryService.saveCategory(dataCategory, user);
         var uri = uriComponentsBuilder.path("/categories/id").buildAndExpand(category.id()).toUri();
         return ResponseEntity.created(uri).body(category);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<CategoryDetails>> list(@AuthenticationPrincipal User user) {
+        List<CategoryDetails> categoryDetails = categoryService.listByUser(user);
+        return ResponseEntity.ok().body(categoryDetails);
     }
 }
