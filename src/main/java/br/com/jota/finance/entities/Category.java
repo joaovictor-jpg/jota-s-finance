@@ -3,6 +3,7 @@ package br.com.jota.finance.entities;
 import br.com.jota.finance.entities.enums.TypeCategoryEnum;
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "Category")
@@ -17,6 +18,8 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "id_user")
     private User user;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Budget> budgets;
 
     public Category() {
     }

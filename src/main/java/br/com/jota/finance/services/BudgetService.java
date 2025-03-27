@@ -8,6 +8,8 @@ import br.com.jota.finance.repositories.BudgetRepository;
 import br.com.jota.finance.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BudgetService {
 
@@ -28,5 +30,11 @@ public class BudgetService {
         budgetRepository.save(budget);
 
         return new BudgetDetails(budget);
+    }
+
+    public List<BudgetDetails> findByUser(User user) {
+        List<Budget> budgets = budgetRepository.findByUser(user);
+
+        return budgets.stream().map(BudgetDetails::new).toList();
     }
 }

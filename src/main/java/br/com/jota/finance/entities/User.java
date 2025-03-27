@@ -32,6 +32,8 @@ public class User implements UserDetails {
     private List<BankAccount> bankAccounts;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Category> categories;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Budget> budgets;
 
     public User() {
     }
