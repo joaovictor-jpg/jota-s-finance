@@ -41,6 +41,10 @@ public class Budget {
         return valueBudget;
     }
 
+    public void setValueBudget(BigDecimal valueBudget) {
+        this.valueBudget = valueBudget;
+    }
+
     public LocalDate getMonthYear() {
         return monthYear;
     }

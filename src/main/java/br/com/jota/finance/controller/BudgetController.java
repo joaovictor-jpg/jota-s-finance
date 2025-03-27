@@ -2,6 +2,7 @@ package br.com.jota.finance.controller;
 
 import br.com.jota.finance.DTOs.budgetDTO.BudgetDetails;
 import br.com.jota.finance.DTOs.budgetDTO.DataBudget;
+import br.com.jota.finance.DTOs.budgetDTO.DataValueBudget;
 import br.com.jota.finance.entities.User;
 import br.com.jota.finance.services.BudgetService;
 import jakarta.validation.Valid;
@@ -32,5 +33,10 @@ public class BudgetController {
     public ResponseEntity<List<BudgetDetails>> listBudget(@AuthenticationPrincipal User user) {
         var budgetDetails = budgetService.findByUser(user);
         return ResponseEntity.ok().body(budgetDetails);
+    }
+
+    @PatchMapping("/{idBudget}")
+    public ResponseEntity<BudgetDetails> update(@PathVariable Long idBudget, @AuthenticationPrincipal User user, @Valid @RequestBody DataValueBudget data) {
+        return ResponseEntity.ok().body(budgetService.updateValue(idBudget, user, data));
     }
 }
