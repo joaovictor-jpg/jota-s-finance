@@ -2,8 +2,10 @@ package br.com.jota.finance.services;
 
 import br.com.jota.finance.DTOs.budgetDTO.BudgetDetails;
 import br.com.jota.finance.DTOs.budgetDTO.DataBudget;
+import br.com.jota.finance.DTOs.budgetDTO.DataUpdateBudget;
 import br.com.jota.finance.DTOs.budgetDTO.DataValueBudget;
 import br.com.jota.finance.entities.Budget;
+import br.com.jota.finance.entities.Category;
 import br.com.jota.finance.entities.User;
 import br.com.jota.finance.repositories.BudgetRepository;
 import br.com.jota.finance.repositories.CategoryRepository;
@@ -48,5 +50,24 @@ public class BudgetService {
         budgetRepository.save(budget);
 
         return new BudgetDetails(budget);
+    }
+
+    public BudgetDetails updateBudget(Long idBudget, User user, @Valid DataUpdateBudget data) {
+        Budget budget = budgetRepository.findByIdBudgetAndUser(idBudget, user).orElseThrow();
+
+        Category category = null;
+
+        if (data.idCategory() != null) {
+            category = categoryRepository.findById(data.idCategory()).orElseThrow();
+        }
+
+        budget.updateBudget(data, category);
+
+        return new BudgetDetails(budget);
+    }
+
+    public void delete(Long idBudget, User user) {
+        Budget budget = budgetRepository.findByIdBudgetAndUser(idBudget, user).orElseThrow();
+        budgetRepository.delete(budget);
     }
 }

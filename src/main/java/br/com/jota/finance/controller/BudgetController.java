@@ -2,6 +2,7 @@ package br.com.jota.finance.controller;
 
 import br.com.jota.finance.DTOs.budgetDTO.BudgetDetails;
 import br.com.jota.finance.DTOs.budgetDTO.DataBudget;
+import br.com.jota.finance.DTOs.budgetDTO.DataUpdateBudget;
 import br.com.jota.finance.DTOs.budgetDTO.DataValueBudget;
 import br.com.jota.finance.entities.User;
 import br.com.jota.finance.services.BudgetService;
@@ -36,7 +37,18 @@ public class BudgetController {
     }
 
     @PatchMapping("/{idBudget}")
-    public ResponseEntity<BudgetDetails> update(@PathVariable Long idBudget, @AuthenticationPrincipal User user, @Valid @RequestBody DataValueBudget data) {
+    public ResponseEntity<BudgetDetails> updateValueBudget(@PathVariable Long idBudget, @AuthenticationPrincipal User user, @Valid @RequestBody DataValueBudget data) {
         return ResponseEntity.ok().body(budgetService.updateValue(idBudget, user, data));
+    }
+
+    @PutMapping("/{idBudget}")
+    public ResponseEntity<BudgetDetails> updateBudget(@PathVariable Long idBudget, @AuthenticationPrincipal User user, @Valid @RequestBody DataUpdateBudget data) {
+        return ResponseEntity.ok().body(budgetService.updateBudget(idBudget, user, data));
+    }
+
+    @DeleteMapping("/{idBudget}")
+    public ResponseEntity<Void> delete(@PathVariable Long idBudget, @AuthenticationPrincipal User user) {
+        budgetService.delete(idBudget, user);
+        return ResponseEntity.noContent().build();
     }
 }

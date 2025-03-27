@@ -1,5 +1,6 @@
 package br.com.jota.finance.entities;
 
+import br.com.jota.finance.DTOs.budgetDTO.DataUpdateBudget;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -31,6 +32,19 @@ public class Budget {
         this.monthYear = monthYear;
         this.category = category;
         this.user = user;
+    }
+
+    public void updateBudget(DataUpdateBudget data, Category category) {
+
+        if (data.valueBudget() != null) {
+            this.valueBudget = data.valueBudget();
+        }
+        if (data.monthYear() != null) {
+            this.monthYear = data.monthYear();
+        }
+        if (category != null) {
+            this.category = category;
+        }
     }
 
     public Long getIdBudget() {
