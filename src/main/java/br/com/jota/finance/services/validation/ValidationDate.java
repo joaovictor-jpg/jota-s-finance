@@ -5,7 +5,7 @@ import br.com.jota.finance.DTOs.goalDTOS.GoalUpdateData;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidationDate implements Validation{
+public class ValidationDate implements IValidationData {
     @Override
     public void validation(GoalData data) {
         var startDate = data.startDate();

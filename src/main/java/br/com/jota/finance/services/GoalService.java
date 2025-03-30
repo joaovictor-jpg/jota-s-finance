@@ -6,7 +6,7 @@ import br.com.jota.finance.DTOs.goalDTOS.GoalUpdateData;
 import br.com.jota.finance.entities.Goal;
 import br.com.jota.finance.entities.User;
 import br.com.jota.finance.repositories.GoalRepository;
-import br.com.jota.finance.services.validation.Validation;
+import br.com.jota.finance.services.validation.IValidationData;
 import br.com.jota.finance.services.validation.ValidationDate;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class GoalService {
     private final GoalRepository goalRepository;
-    private final List<Validation> validations = new ArrayList<>();
+    private final List<IValidationData> validations = new ArrayList<>();
 
     public GoalService(GoalRepository goalRepository) {
         this.goalRepository = goalRepository;
