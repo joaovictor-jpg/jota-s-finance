@@ -45,4 +45,14 @@ public class TransactionService {
 
         return new DetailTransaction(transaction, new CategoryDetails(category));
     }
+
+    public List<DetailTransaction> listTransaction(User user) {
+        List<Transaction> transactions = transactionRepository.findByUser(user);
+        return transactions.stream().map(transaction -> new DetailTransaction(transaction, new CategoryDetails(transaction.getCategory()))).toList();
+    }
+
+    public void delete(Long idTransaction, User user) {
+        Transaction transaction = transactionRepository.findByIdTransactionAndUser(idTransaction, user).orElseThrow();
+        transactionRepository.delete(transaction);
+    }
 }
