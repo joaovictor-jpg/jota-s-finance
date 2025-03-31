@@ -12,6 +12,7 @@ import br.com.jota.finance.repositories.CategoryRepository;
 import br.com.jota.finance.repositories.TransactionRepository;
 import br.com.jota.finance.services.validation.IValidationValue;
 import br.com.jota.finance.services.validation.ValidationValue;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +35,8 @@ public class TransactionService {
 
     @Transactional
     public DetailTransaction registerTransaction(DataTransaction data, User user) {
-        Category category = categoryRepository.findById(data.idCategory()).orElseThrow();
-        BankAccount bankAccount = bankAccountRepository.findById(data.idBankAccount()).orElseThrow();
+        Category category = categoryRepository.findById(data.idCategory()).orElseThrow(() -> new EntityNotFoundException("Category not found"));
+        BankAccount bankAccount = bankAccountRepository.findById(data.idBankAccount()).orElseThrow(() -> new EntityNotFoundException("bank account not found"));
 
         Transaction transaction = new Transaction(data.description(), data.transactionValue(), data.transactionDate(), data.typeTransaction(), user, category, bankAccount);
 

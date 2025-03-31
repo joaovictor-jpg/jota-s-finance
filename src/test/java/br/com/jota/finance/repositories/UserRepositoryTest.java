@@ -4,10 +4,8 @@ import br.com.jota.finance.entities.BankAccount;
 import br.com.jota.finance.entities.User;
 import br.com.jota.finance.entities.enums.Perfil;
 import br.com.jota.finance.entities.enums.TypeAccount;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -43,7 +41,7 @@ class UserRepositoryTest {
     @Test
     @DisplayName("Should return bank accounts when user has accounts")
     void findBankAccountsByUserIdCena2() {
-        User user = createUser("Jota", "jota@gmail.com", "j@v2515", Boolean.TRUE, Perfil.USER, LocalDateTime.now());
+        User user = createUser("Jota", "jota@gmail.com", "j@v100", Boolean.TRUE, Perfil.USER, LocalDateTime.now());
 
         BankAccount expect = createAccount("Nu bank", TypeAccount.CURRENT_ACCOUNT, new BigDecimal(200.00), user);
 
