@@ -26,7 +26,7 @@ public class GoalService {
 
     @Transactional
     public GoalDatails createGoal(GoalData data, User user) {
-        validations.forEach(v -> v.validation(data));
+        validations.forEach(v -> v.validationDate(data.endDate(), data.startDate()));
 
         Goal goal = new Goal(data.description(), data.targetValue(), data.startDate(), data.endDate(), user);
 
@@ -57,7 +57,7 @@ public class GoalService {
             goal.setStartDate(data.startDate());
         }
         if (data.endDate() != null) {
-            validations.forEach(v -> v.validation(data));
+            validations.forEach(v -> v.validationDate(data.endDate(), data.startDate()));
             goal.setEndDate(data.endDate());
         }
 
