@@ -42,7 +42,7 @@ class TransactionServiceTest {
     @Mock
     private TransactionRepository transactionRepository;
 
-    @Mock
+    @Spy
     private List<IValidationValue> validationValues = new ArrayList<>();
 
     @Mock
@@ -61,7 +61,7 @@ class TransactionServiceTest {
     private ArgumentCaptor<Transaction> transactionArgumentCaptor;
 
     @Test
-    @Description("Shoud return DetailTransaction class")
+    @Description("Must call method to save transaction")
     void registerTransactionC1() {
 
         DataTransaction dto = new DataTransaction("Description", new BigDecimal("100.00"), TypeTransaction.INCOME, LocalDateTime.parse("2025-03-10T12:30:00"), 1L, 1L);
@@ -80,6 +80,23 @@ class TransactionServiceTest {
         Assertions.assertEquals(dto.description(), transactionSalve.getDescription());
         Assertions.assertEquals(category, transactionSalve.getCategory());
         Assertions.assertEquals(bankAccount, transactionSalve.getBankAccount());
+    }
 
+
+    @Test
+    @Description("Must call validations")
+    void registerTransactionC2() {
+
+        DataTransaction dto = new DataTransaction("Description", new BigDecimal("100.00"), TypeTransaction.INCOME, LocalDateTime.parse("2025-03-10T12:30:00"), 1L, 1L);
+
+        BDDMockito.given(bankAccount.getOpeningBalance()).willReturn(new BigDecimal("2000.00"));
+        BDDMockito.given(category.getType()).willReturn(TypeCategoryEnum.INCOME);
+        BDDMockito.given(categoryRepository.findById(dto.idCategory())).willReturn(Optional.of(category));
+        BDDMockito.given(bankAccountRepository.findById(dto.idBankAccount())).willReturn(Optional.of(bankAccount));
+        validationValues.add(validationValue);
+
+        transactionService.registerTransaction(dto, user);
+
+        then(validationValue).should().validateSufficientBalance(dto.transactionValue(), bankAccount.getOpeningBalance());
     }
 }
