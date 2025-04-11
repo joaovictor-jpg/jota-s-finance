@@ -6,6 +6,7 @@ import br.com.jota.finance.DTOs.bankAccountDTOs.BankAccountDetails;
 import br.com.jota.finance.DTOs.goalDTOS.GoalDatails;
 import br.com.jota.finance.entities.BankAccount;
 import br.com.jota.finance.entities.User;
+import br.com.jota.finance.services.EmailService;
 import br.com.jota.finance.services.UserServices;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import java.util.List;
 public class UserController {
     private final UserServices userServices;
 
-    public UserController(UserServices userServices) {
+    public UserController(UserServices userServices, EmailService emailService) {
         this.userServices = userServices;
     }
 

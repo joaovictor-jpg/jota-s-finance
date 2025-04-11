@@ -27,12 +27,14 @@ public class UserServices implements UserDetailsService {
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
-    public UserServices(UserRepository userRepository, @Lazy AuthenticationManager authenticationManager, TokenService tokenService, PasswordEncoder passwordEncoder) {
+    public UserServices(UserRepository userRepository, @Lazy AuthenticationManager authenticationManager, TokenService tokenService, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
         this.tokenService = tokenService;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
     @Override
@@ -57,6 +59,15 @@ public class UserServices implements UserDetailsService {
         var encodePassword = passwordEncoder.encode(data.password());
 
         User user = new User(data.name(), data.email(), encodePassword, true, data.role(), LocalDateTime.now());
+
+        String menssage = """
+                    Precisamos apenas verificar seu endereço de e-mail.
+                    Por favor clique no link abaixo para verificar sua conta: <br>
+                    <h3><a href=\\"http://localhos:8080/users/%s\\" target=\\"_sefl\\">Verificar</a></h3>
+                    Obrigado!<br>
+                """.formatted(user.getId());
+
+        emailService.enviarEmail("Verifique seu e-mail", user.getUsername(), menssage);
 
         return userRepository.save(user);
     }
