@@ -1,0 +1,421 @@
+{
+	"info": {
+		"_postman_id": "ab81a871-0d5b-44cb-b9a5-ac9ff278527d",
+		"name": "Jota's finance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "16625913"
+	},
+	"item": [
+		{
+			"name": "Cadastro de usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Heloise Ayla Figueiredo\",\r\n    \"email\":\"heloise_ayla_figueiredo@gmail.com\",\r\n    \"password\":\"XweEkD9Pmw\",\r\n    \"role\":\"ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/users/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "Fazer login usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"heloise_ayla_figueiredo@gmail.com\",\r\n    \"password\":\"XweEkD9Pmw\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/users/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro de meta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MjI1MTE3OH0.OAUwgvc4czrmqzfjI_l6DHz7U057Nl-_g--nOJ5B1nE"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Quarda dinheiro para o final do ano\",\r\n    \"targetValue\": \"1500.00\",\r\n    \"startDate\": \"2025-04-01T12:00\",\r\n    \"endDate\": \"2025-12-01T12:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/goals"
+			},
+			"response": []
+		},
+		{
+			"name": "Lista metas aparte do id do usuário",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MjI1MTE3OH0.OAUwgvc4czrmqzfjI_l6DHz7U057Nl-_g--nOJ5B1nE"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/users/goals"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar meta pelo id do usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MjI0OTQ2Mn0.6KaZAZCc7XoifmxbKqGkHiM9_sIPys0iLYpIkVC-ITk"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"targetValue\": 15000.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/goals/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete goal pelo id e usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MjI1MTE3OH0.OAUwgvc4czrmqzfjI_l6DHz7U057Nl-_g--nOJ5B1nE"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/goals/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Criar conta bancaria",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzM3NzQ1MH0.6s3VWwcLQdCpzJHSV2LqhFNL7A7oKIalchc_by8xNTs"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nameAccount\": \"Conta Corrente Nubank\",\r\n    \"typeAccount\": \"DIGITAL_ACCOUNT\",\r\n    \"openingBalance\": 25000.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/bankAccounts"
+			},
+			"response": []
+		},
+		{
+			"name": "Lista contas por usuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MjUwMDY2OX0.rDzwowtnDPNli-7q3wXuCygP3ZpcMDD3LsVnACZqzP4"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/users/bankAccount"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar conta bancaria de usuário",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MjUwMjcxM30.NtsGSI6u310-xRsT-KhEjP19LQnLIlPaJeQvMuXRJQg"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/bankAccounts/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra categoria",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzA5NTk5MX0.kRbbQCs1ds_S58XYU32oSmsIgdhuONdVpnPRZRmQia4"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Alimentação\",\r\n    \"type\": \"EXPENSE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/categorias"
+			},
+			"response": []
+		},
+		{
+			"name": "Lista categorias por usuários",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0Mjg0NjUyOX0.d17ke0pm3__u1UIO6H_rloPriJqaw6QRI_YPbe18vdA"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/categorias"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar categoria",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0Mjg0NzExN30.6onH7wPMjsq5-i2QWhiFUf7yr9JK9I4vTiCP9xloABw"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/categorias/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro de orçamento",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzA5NTk5MX0.kRbbQCs1ds_S58XYU32oSmsIgdhuONdVpnPRZRmQia4"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"valueBudget\": 150.00,\r\n    \"monthYear\": \"2025-04-01\",\r\n    \"idCategory\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/budgets"
+			},
+			"response": []
+		},
+		{
+			"name": "Lista de orçamentos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzEwMjg5Nn0.zHOVrfMKPxwx7RxlyKIC_N76Mz7bnZ-_52gK4K0-Dd8"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/budgets"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar valor de orçamento",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzEwMjg5Nn0.zHOVrfMKPxwx7RxlyKIC_N76Mz7bnZ-_52gK4K0-Dd8"
+					}
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"value\": 200.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/budgets/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualização de orçamento",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzEwNTM3MX0.tRTNd7-QJq_-fDmF-TiB4P7cDIyXJ2WgPrFD_jPAorI"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"valueBudget\": 150.00,\r\n    \"monthYear\": \"2025-05-01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/budgets/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Deleta orçamento",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzEwNTM3MX0.tRTNd7-QJq_-fDmF-TiB4P7cDIyXJ2WgPrFD_jPAorI"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/budgets/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Transação",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzM3NzY4OH0.EdQy82gpCN-9qD31VtFqCeKqMs_joXWnw6J-GduRJsE"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Compra de alimento\",\r\n    \"transactionValue\": 15.00,\r\n    \"typeTransaction\": \"EXPENSE\",\r\n    \"transactionDate\": \"2025-02-30T12:24:00\",\r\n    \"idCategory\": 2,\r\n    \"idBankAccount\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/transactions"
+			},
+			"response": []
+		},
+		{
+			"name": "Lista transações",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzM4MDM1MH0.k6YZJgfvlzS5_r87pkRI6irMffeRUYrQFw4wm68tBGk"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/transactions"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar transição",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJKb3RhJ3MgZmluYW5jZSIsInN1YiI6ImhlbG9pc2VfYXlsYV9maWd1ZWlyZWRvQGdtYWlsLmNvbSIsImV4cCI6MTc0MzM4MDM1MH0.k6YZJgfvlzS5_r87pkRI6irMffeRUYrQFw4wm68tBGk"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/transactions/1"
+			},
+			"response": []
+		}
+	]
+}
