@@ -7,6 +7,8 @@ services:
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+
     volumes:
       - postgres:/data/postgres
     ports:
@@ -14,18 +16,30 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin_db
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PG_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "8081:80"
+      - "8080:8080"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      EMAIL_LOGIN: puroossogamer690@gmail.com
+      EMAIL_PASSWORD: hspc xkhb xbze oeqb
+      app_jwt_secret: ${app_jwt_secret}
     networks:
       - postgres
 
