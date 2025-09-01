@@ -10,6 +10,7 @@ import br.com.jota.finance.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
