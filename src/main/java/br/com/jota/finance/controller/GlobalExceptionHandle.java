@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.Map;
+
 @RestControllerAdvice
 public class GlobalExceptionHandle {
 
@@ -16,7 +18,8 @@ public class GlobalExceptionHandle {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity exception(DataIntegrityViolationException e) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O e-mail já está em uso.");
+        Map<String, String> body = Map.of("message", "O e-mail já está em uso.");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
     @ExceptionHandler(Exception.class)
