@@ -2,7 +2,7 @@
 
 Este repositório contém o **backend** da aplicação **Jota's Financias**, uma API RESTful completa para gerenciamento de finanças pessoais. Ela é responsável por toda a lógica de negócio, segurança e persistência dos dados.
 
-> **Frontend:** O projeto frontend, construído com Next.js, está disponível no repositório: **[joaovictor-jpg/financias](https://github.com/joaovictor-jpg/jota-s-finance)**
+> **Frontend:** O projeto frontend, construído com Next.js, está disponível no repositório: **[joaovictor-jpg/financias](https://github.com/joaovictor-jpg/financias)**
 
 ## 🚀 Sobre a API
 
